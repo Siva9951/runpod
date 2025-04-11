@@ -9,11 +9,9 @@ WORKDIR /app
 # Copy project
 COPY . .
 
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Expose port for Flask
-EXPOSE 7860
-
-# Run the Flask app
-CMD ["python", "app.py"]
+CMD ["handler.handler"]
