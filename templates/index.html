@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <title>Image Generator</title>
+</head>
+<body>
+    <h1>Generate Image from Prompt</h1>
+    <form method="POST">
+        <input type="text" name="prompt" placeholder="Enter prompt" required>
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if image %}
+        <h2>Generated Image:</h2>
+        <img src="{{ image }}" alt="Generated Image" style="max-width: 500px;"/>
+    {% endif %}
+</body>
+</html>
+
