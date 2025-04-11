@@ -1,16 +1,19 @@
 FROM python:3.10-slim
 
-# Set working directory
+# System dependencies
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
+# Set workdir
 WORKDIR /app
 
-# Copy files
+# Copy project
 COPY . .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Expose port
+# Expose port for Flask
 EXPOSE 7860
 
-# Run app
+# Run the Flask app
 CMD ["python", "app.py"]

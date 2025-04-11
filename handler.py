@@ -4,11 +4,14 @@ import torch
 from diffusers import DiffusionPipeline
 from PIL import Image
 import io
+import os 
 
+hf_token=os.getenv("HUGGINGFACE_TOKEN")
 
 # Load the model (once)
 pipe = DiffusionPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
+    use_auth_token=hf_token,
     torch_dtype=torch.float16
 ).to("cuda")  # Use "cpu" if you don't have a GPU
 
